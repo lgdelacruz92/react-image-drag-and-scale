@@ -1,5 +1,7 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
+import TopTransformer from "./toptransformer";
+import RightTransformer from "./righttransformer";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -12,15 +14,12 @@ const useStyles = MaterialUI.makeStyles(theme => {
         `translate(${props.translateX}px, ${props.translateY}px)`,
       position: "relative"
     },
-    transformerBtnTop: {
+    transformer: {
       width: 50,
       height: 10,
       background: "lightgrey",
       boxShadow: "0px 1px 2px black",
-      borderRadius: "3px",
-      position: "absolute",
-      transform: "translate(-50%, -50%)",
-      left: "50%"
+      borderRadius: "3px"
     }
   };
 });
@@ -32,8 +31,7 @@ const Transformer = props => {
     width: data.width,
     height: data.height,
     translateX: 0,
-    translateY: 0,
-    transforming: false
+    translateY: 0
   });
 
   const classes = useStyles({
@@ -43,40 +41,24 @@ const Transformer = props => {
     translateY: state.translateY
   });
 
-  const onMouseDown = e => {
-    state.transforming = true;
-    e.preventDefault();
-    setState({ ...state });
+  const update = newState => {
+    setState({ ...newState });
   };
-
-  React.useEffect(() => {
-    const handleMouseMove = e => {
-      if (state.transforming) {
-        state.translateX = 0;
-        state.translateY = e.clientY - data.y;
-        state.height = data.height - (e.clientY - data.y);
-        setState({ ...state });
-        e.preventDefault();
-      }
-    };
-
-    const handleMouseUp = e => {
-      state.transforming = false;
-      e.preventDefault();
-      setState({ ...state });
-    };
-
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, [state, data]);
 
   return (
     <div className={classes.basicContainer}>
-      <div onMouseDown={onMouseDown} className={classes.transformerBtnTop} />
+      <TopTransformer
+        data={data}
+        transformer={state}
+        updateTransformer={update}
+        className={classes.transformer}
+      />
+      <RightTransformer
+        data={data}
+        transformer={state}
+        updateTransformer={update}
+        className={classes.transformer}
+      />
       {children}
     </div>
   );
