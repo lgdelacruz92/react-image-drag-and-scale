@@ -15,44 +15,11 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const RightTransformer = props => {
-  const { className, data, transformer, updateTransformer } = props;
-
-  const startTransforming = e => {
-    transformer.rightTransforming = true;
-    updateTransformer(transformer);
-    e.preventDefault();
-    e.stopPropagation();
-  };
-
-  React.useEffect(() => {
-    const onRightTranform = e => {
-      if (transformer.rightTransforming) {
-        transformer.width = e.clientX - data.x;
-        updateTransformer(transformer);
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    };
-
-    const stopTransforming = e => {
-      transformer.rightTransforming = false;
-      updateTransformer(transformer);
-    };
-
-    document.addEventListener("mousemove", onRightTranform);
-    document.addEventListener("mouseup", stopTransforming);
-    return () => {
-      document.removeEventListener("mousemove", onRightTranform);
-      document.removeEventListener("mouseup", stopTransforming);
-    };
-  }, [data, transformer, updateTransformer]);
+  const { className } = props;
 
   const classes = useStyles();
   return (
-    <div
-      onMouseDown={startTransforming}
-      className={clsx(className, classes.rightTransformer)}
-    />
+    <div {...props} className={clsx(className, classes.rightTransformer)} />
   );
 };
 

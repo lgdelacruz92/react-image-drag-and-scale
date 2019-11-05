@@ -26,18 +26,24 @@ const TopTransformer = props => {
   React.useEffect(() => {
     const onTopTransform = e => {
       if (transformer.topTransforming) {
-        transformer.translateY = e.clientY - data.y;
         transformer.height = data.height - (e.clientY - data.y);
+        if (transformer.height > 20) {
+          transformer.translateY = e.clientY - data.y;
+        }
         updateTransformer(transformer);
-        e.preventDefault();
-        e.stopPropagation();
       }
+
+      e.preventDefault();
+      e.stopPropagation();
     };
 
     const endTopTransform = e => {
       transformer.topTransforming = false;
       updateTransformer(transformer);
+      e.preventDefault();
+      e.stopPropagation();
     };
+
     document.addEventListener("mousemove", onTopTransform);
     document.addEventListener("mouseup", endTopTransform);
     return () => {

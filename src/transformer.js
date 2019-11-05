@@ -1,20 +1,17 @@
 import React from "react";
 import * as MaterialUI from "@material-ui/core";
-import TopTransformer from "./toptransformer";
+import TransformingContainer from "./transformingcontainer";
 import RightTransformer from "./righttransformer";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
-    basicContainer: {
+    transformer: {
       fontSize: 0,
       display: "inline-block",
       width: props => props.width,
-      height: props => props.height,
-      transform: props =>
-        `translate(${props.translateX}px, ${props.translateY}px)`,
-      position: "relative"
+      height: props => props.height
     },
-    transformer: {
+    transformerTrigger: {
       width: 50,
       height: 10,
       background: "lightgrey",
@@ -26,40 +23,48 @@ const useStyles = MaterialUI.makeStyles(theme => {
 
 const Transformer = props => {
   const { data, children } = props;
+  const classes = useStyles(data);
 
   const [state, setState] = React.useState({
-    width: data.width,
-    height: data.height,
-    translateX: 0,
-    translateY: 0
+    rightTransforming: false,
+    mouseEvent: undefined,
+    transform: data
   });
 
-  const classes = useStyles({
-    width: state.width,
-    height: state.height,
-    translateX: state.translateX,
-    translateY: state.translateY
-  });
+  React.useEffect(() => {
+    const onMouseMove = e => {
+      setState(s => ({ ...s, mouseEvent: e }));
+    };
 
-  const update = newState => {
-    setState({ ...newState });
-  };
+    const onMouseUp = e => {
+      setState(s => {
+        if (s.rightTransforming) {
+          s.transform.width = e.clientX - s.transform.x;
+        }
+        return { ...s, rightTransforming: false };
+      });
+    };
+
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mouseup", onMouseUp);
+
+    return () => {
+      // TODO update x and y and width and height of original data
+
+      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("mouseup", onMouseUp);
+    };
+  }, []);
 
   return (
-    <div className={classes.basicContainer}>
-      <TopTransformer
-        data={data}
-        transformer={state}
-        updateTransformer={update}
-        className={classes.transformer}
-      />
+    <div className={classes.transformer}>
       <RightTransformer
-        data={data}
-        transformer={state}
-        updateTransformer={update}
-        className={classes.transformer}
+        onMouseDown={() => setState({ ...state, rightTransforming: true })}
+        className={classes.transformerTrigger}
       />
-      {children}
+      <TransformingContainer transformingEvent={state}>
+        {children}
+      </TransformingContainer>
     </div>
   );
 };
