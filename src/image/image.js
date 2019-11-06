@@ -1,7 +1,7 @@
 import React from "react";
-import Transformer from "./transformer";
+import Transformer from "image/transformer/transformer";
 import * as MaterialUI from "@material-ui/core";
-import Translator from "./translator";
+import Translator from "image/translator/translator";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
