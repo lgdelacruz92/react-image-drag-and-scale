@@ -16,7 +16,6 @@ const useStyles = MaterialUI.makeStyles(theme => {
 
 function App() {
   const classes = useStyles();
-  console.log("render App");
   const imageData = {
     x: 50,
     y: 200,

@@ -11,7 +11,10 @@ const rightTransform = dependency => {
 
 const topTransformTranslateY = dependency => {
   const { state } = dependency;
-  if (state.mouseEvent.clientY < state.transform.y + state.transform.height) {
+  if (
+    state.mouseEvent &&
+    state.mouseEvent.clientY < state.transform.y + state.transform.height
+  ) {
     return state.mouseEvent.clientY - state.transform.y;
   } else {
     return state.transform.height;

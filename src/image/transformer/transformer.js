@@ -7,7 +7,6 @@ import { useStyles } from "./styles";
 
 const Transformer = props => {
   const { data, children } = props;
-  const classes = useStyles(data);
 
   const [state, setState] = React.useState({
     rightTransforming: false,
@@ -15,6 +14,7 @@ const Transformer = props => {
     mouseEvent: undefined,
     transform: data
   });
+  const classes = useStyles(state);
 
   React.useEffect(() => {
     const onMouseMove = e => {
