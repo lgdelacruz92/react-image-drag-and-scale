@@ -18,6 +18,8 @@ export const useStyles = MaterialUI.makeStyles(theme => {
       }
     },
     transformerControl: {
+      position: "absolute",
+      zIndex: 2,
       background: "lightgrey",
       boxShadow: "0px 1px 2px black"
     },
@@ -32,24 +34,24 @@ export const useStyles = MaterialUI.makeStyles(theme => {
       borderRadius: "3px"
     },
     rightTr: {
-      position: "absolute",
       top: "50%",
       left: "100%",
-      zIndex: 2,
       transform: "translate(-50%, -50%) rotate(90deg)"
     },
     topTr: {
-      position: "absolute",
       top: 0,
       left: "50%",
-      transform: "translate(-50%, -50%)",
-      zIndex: 2
+      transform: "translate(-50%, -50%)"
     },
     topRightTr: {
-      position: "absolute",
-      zIndex: 2,
       right: 0,
       transform: "translate(50%, -50%)"
+    },
+    container: {
+      width: props => props.rect.scaledWidth,
+      height: props => props.rect.scaledHeight,
+      transform: props =>
+        `translate(${props.rect.translateX}px, ${props.rect.translateY}px)`
     }
   };
 });
