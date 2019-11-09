@@ -27,7 +27,8 @@ const Transformer = props => {
         if (s.rightTransforming) {
           return TrUtils.rightTransform({ state: s });
         } else if (s.topTransforming) {
-          return { ...s, topTransforming: false };
+          console.log("Top transform", TrUtils.topTransform({ state: s }));
+          return TrUtils.topTransform({ state: s });
         } else {
           return { ...s };
         }
@@ -48,15 +49,17 @@ const Transformer = props => {
 
   return (
     <div className={classes.transformer}>
-      <TrDivs.RightTrDiv
-        onMouseDown={() => setState({ ...state, rightTransforming: true })}
-        className={clsx(classes.transformerTrigger, classes.rightTr)}
-      />
-      <TrDivs.TopTrDiv
-        onMouseDown={() => setState({ ...state, topTransforming: true })}
-        className={clsx(classes.transformerTrigger, classes.topTr)}
-      />
-      <Container transformingEvent={state}>{children}</Container>
+      <Container transformingEvent={state}>
+        <TrDivs.RightTrDiv
+          onMouseDown={() => setState({ ...state, rightTransforming: true })}
+          className={clsx(classes.transformerTrigger, classes.rightTr)}
+        />
+        <TrDivs.TopTrDiv
+          onMouseDown={() => setState({ ...state, topTransforming: true })}
+          className={clsx(classes.transformerTrigger, classes.topTr)}
+        />
+        {children}
+      </Container>
     </div>
   );
 };

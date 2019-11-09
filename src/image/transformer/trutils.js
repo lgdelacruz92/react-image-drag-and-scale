@@ -28,9 +28,17 @@ const topTransformHeight = dependency => {
   );
 };
 
+const topTransform = dependency => {
+  const { state } = dependency;
+  state.transform.y = topTransformTranslateY({ state });
+  state.transform.height = topTransformHeight({ state });
+  return { ...state, topTransforming: false };
+};
+
 export const TrUtils = {
   rightTransform,
   rightTranformCalc,
   topTransformTranslateY,
-  topTransformHeight
+  topTransformHeight,
+  topTransform
 };

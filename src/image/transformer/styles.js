@@ -1,5 +1,4 @@
 import * as MaterialUI from "@material-ui/core";
-import { TrUtils } from "./trutils";
 
 export const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -7,8 +6,7 @@ export const useStyles = MaterialUI.makeStyles(theme => {
       fontSize: 0,
       display: "inline-block",
       width: "auto",
-      height: "auto",
-      background: "rgba(255, 0, 0, 0.3)"
+      height: "auto"
     },
     transformerTrigger: {
       width: 50,
