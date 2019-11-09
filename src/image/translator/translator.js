@@ -18,6 +18,12 @@ const Translator = props => {
     y: data.y
   });
 
+  React.useEffect(() => {
+    console.log("Mounting translator");
+    return () => {
+      console.log("Unmounting translator");
+    };
+  });
   return <div className={classes.translator}>{children}</div>;
 };
 

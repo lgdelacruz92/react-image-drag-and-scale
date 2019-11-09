@@ -2,17 +2,33 @@ import * as MaterialUI from "@material-ui/core";
 
 export const useStyles = MaterialUI.makeStyles(theme => {
   return {
-    transformer: {
-      fontSize: 0,
-      display: "inline-block",
-      width: "auto",
-      height: "auto"
+    verticalTransformerControl: {
+      "&:hover": {
+        cursor: "ns-resize"
+      }
     },
-    transformerTrigger: {
+    horizontalTransformerControl: {
+      "&:hover": {
+        cursor: "ew-resize"
+      }
+    },
+    neswTransformerControl: {
+      "&:hover": {
+        cursor: "nesw-resize"
+      }
+    },
+    transformerControl: {
+      background: "lightgrey",
+      boxShadow: "0px 1px 2px black"
+    },
+    cornerTransformer: {
+      width: 10,
+      height: 10,
+      borderRadius: "50%"
+    },
+    edgeTransformer: {
       width: 50,
       height: 10,
-      background: "lightgrey",
-      boxShadow: "0px 1px 2px black",
       borderRadius: "3px"
     },
     rightTr: {
@@ -28,6 +44,12 @@ export const useStyles = MaterialUI.makeStyles(theme => {
       left: "50%",
       transform: "translate(-50%, -50%)",
       zIndex: 2
+    },
+    topRightTr: {
+      position: "absolute",
+      zIndex: 2,
+      right: 0,
+      transform: "translate(50%, -50%)"
     }
   };
 });

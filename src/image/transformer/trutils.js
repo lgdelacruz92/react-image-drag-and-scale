@@ -1,44 +1,22 @@
-const rightTranformCalc = dependency => {
-  const { state } = dependency;
-  return state.mouseEvent.clientX - state.transform.x;
+const transformRight = ({ rect, mouseEvent }) => {
+  rect.scaledWidth = mouseEvent.clientX - rect.translateX - rect.x;
+  rect.scaledWidth = rect.scaledWidth < 0 ? 0 : rect.scaledWidth;
+};
+const transformTop = ({ rect, mouseEvent }) => {
+  rect.translateY = mouseEvent.clientY - rect.y;
+  rect.translateY =
+    rect.translateY > rect.height ? rect.height : rect.translateY;
+  rect.scaledHeight = rect.y - mouseEvent.clientY + rect.height;
+  rect.scaledHeight = rect.scaledHeight < 0 ? 0 : rect.scaledHeight;
 };
 
-const rightTransform = dependency => {
-  const { state } = dependency;
-  state.transform.width = rightTranformCalc({ state });
-  return { ...state, rightTransforming: false };
-};
-
-const topTransformTranslateY = dependency => {
-  const { state } = dependency;
-  if (
-    state.mouseEvent &&
-    state.mouseEvent.clientY < state.transform.y + state.transform.height
-  ) {
-    return state.mouseEvent.clientY - state.transform.y;
-  } else {
-    return state.transform.height;
-  }
-};
-
-const topTransformHeight = dependency => {
-  const { state } = dependency;
-  return (
-    state.transform.height + (state.transform.y - state.mouseEvent.clientY)
-  );
-};
-
-const topTransform = dependency => {
-  const { state } = dependency;
-  state.transform.y = topTransformTranslateY({ state });
-  state.transform.height = topTransformHeight({ state });
-  return { ...state, topTransforming: false };
+const transformTopRight = ({ rect, mouseEvent }) => {
+  transformRight({ rect, mouseEvent });
+  transformTop({ rect, mouseEvent });
 };
 
 export const TrUtils = {
-  rightTransform,
-  rightTranformCalc,
-  topTransformTranslateY,
-  topTransformHeight,
-  topTransform
+  transformRight,
+  transformTop,
+  transformTopRight
 };

@@ -1,3 +1,4 @@
 import RightTrDiv from "./righttrdiv";
 import TopTrDiv from "./topdrdiv";
-export { RightTrDiv, TopTrDiv };
+import TopRightTrDiv from "./toprighttrdiv";
+export { RightTrDiv, TopTrDiv, TopRightTrDiv };
