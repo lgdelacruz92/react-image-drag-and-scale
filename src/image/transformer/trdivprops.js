@@ -42,6 +42,17 @@ export const useControls = ({ setTransformer, transformer, classes }) => {
         classes.edgeTransformer,
         classes.rightTr
       )
+    },
+    {
+      component: TrDivs.BottomTrDiv,
+      onMouseDown: () =>
+        setTransformer({ ...transformer, bottomTransforming: true }),
+      className: clsx(
+        classes.verticalTransformerControl,
+        classes.transformerControl,
+        classes.edgeTransformer,
+        classes.bottomTr
+      )
     }
   ];
   return [controls];

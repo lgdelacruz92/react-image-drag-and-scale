@@ -13,6 +13,9 @@ export const useEventHandlers = props => {
       } else if (s.topTransforming) {
         TrUtils.transformTop({ rect: s.rect, mouseEvent: e });
         return { ...s };
+      } else if (s.bottomTransforming) {
+        TrUtils.transformBottom({ rect: s.rect, mouseEvent: e });
+        return { ...s };
       } else {
         return { ...s };
       }
@@ -28,6 +31,8 @@ export const useEventHandlers = props => {
         return { ...s, rightTransforming: false };
       } else if (s.topTransforming) {
         return { ...s, topTransforming: false };
+      } else if (s.bottomTransforming) {
+        return { ...s, bottomTransforming: false };
       } else {
         return { ...s };
       }

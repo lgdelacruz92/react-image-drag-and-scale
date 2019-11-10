@@ -4,15 +4,17 @@ const transformRight = ({ rect, mouseEvent }) => {
 };
 
 const transformTop = ({ rect, mouseEvent }) => {
+  let scaledHeightCopy = rect.scaledHeight;
+  rect.scaledHeight =
+    rect.y + rect.translateY - mouseEvent.clientY + rect.scaledHeight;
+  rect.scaledHeight = rect.scaledHeight < 0 ? 0 : rect.scaledHeight;
   rect.translateY = mouseEvent.clientY - rect.y;
   rect.translateY =
-    rect.translateY > rect.height ? rect.height : rect.translateY;
-  rect.scaledHeight = rect.y - mouseEvent.clientY + rect.height;
-  rect.scaledHeight = rect.scaledHeight < 0 ? 0 : rect.scaledHeight;
+    rect.translateY > scaledHeightCopy ? scaledHeightCopy : rect.translateY;
 };
 
 const transformBottom = ({ rect, mouseEvent }) => {
-  rect.scaledHeight = mouseEvent.clientY - rect.y;
+  rect.scaledHeight = mouseEvent.clientY - (rect.y + rect.translateY);
   rect.scaledHeight = rect.scaledHeight < 0 ? 0 : rect.scaledHeight;
 };
 
