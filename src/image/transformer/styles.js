@@ -70,6 +70,9 @@ export const useStyles = MaterialUI.makeStyles(theme => {
       bottom: 0,
       transform: "translate(-50%, 50%)"
     },
+    topLeftTr: {
+      transform: "translate(-50%, -50%)"
+    },
     container: {
       width: props => props.rect.scaledWidth,
       height: props => props.rect.scaledHeight,
