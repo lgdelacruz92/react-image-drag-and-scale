@@ -22,6 +22,9 @@ export const useEventHandlers = props => {
       } else if (s.leftTransforming) {
         TrUtils.transformLeft({ rect: s.rect, mouseEvent: e });
         return { ...s };
+      } else if (s.bottomLeftTransforming) {
+        TrUtils.transformBottomLeft({ rect: s.rect, mouseEvent: e });
+        return { ...s };
       } else {
         return { ...s };
       }
@@ -43,6 +46,8 @@ export const useEventHandlers = props => {
         return { ...s, bottomRightTransforming: false };
       } else if (s.leftTransforming) {
         return { ...s, leftTransforming: false };
+      } else if (s.bottomLeftTransforming) {
+        return { ...s, bottomLeftTransforming: false };
       } else {
         return { ...s };
       }

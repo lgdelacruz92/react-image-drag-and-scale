@@ -40,11 +40,17 @@ const transformBottomRight = ({ rect, mouseEvent }) => {
   transformBottom({ rect, mouseEvent });
 };
 
+const transformBottomLeft = ({ rect, mouseEvent }) => {
+  transformLeft({ rect, mouseEvent });
+  transformBottom({ rect, mouseEvent });
+};
+
 export const TrUtils = {
   transformRight,
   transformTop,
   transformTopRight,
   transformBottom,
   transformBottomRight,
-  transformLeft
+  transformLeft,
+  transformBottomLeft
 };

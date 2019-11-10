@@ -11,6 +11,7 @@ const Transformer = props => {
     bottomTransforming: false,
     bottomRightTransforming: false,
     leftTransforming: false,
+    bottomLeftTransforming: false,
     rect: data
   });
   const [onMouseMove, onMouseUp] = useEventHandlers({ setState });
