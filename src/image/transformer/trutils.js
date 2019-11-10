@@ -3,6 +3,17 @@ const transformRight = ({ rect, mouseEvent }) => {
   rect.scaledWidth = rect.scaledWidth < 0 ? 0 : rect.scaledWidth;
 };
 
+const transformLeft = ({ rect, mouseEvent }) => {
+  let virtualX = rect.x + rect.translateX;
+  if (mouseEvent.clientX <= virtualX + rect.scaledWidth) {
+    rect.scaledWidth = virtualX + rect.scaledWidth - mouseEvent.clientX;
+    virtualX = mouseEvent.clientX;
+    rect.translateX = virtualX - rect.x;
+  } else {
+    rect.scaledWidth = 0;
+  }
+};
+
 const transformTop = ({ rect, mouseEvent }) => {
   let virtualY = rect.translateY + rect.y;
   if (mouseEvent.clientY <= virtualY + rect.scaledHeight) {
@@ -34,5 +45,6 @@ export const TrUtils = {
   transformTop,
   transformTopRight,
   transformBottom,
-  transformBottomRight
+  transformBottomRight,
+  transformLeft
 };
