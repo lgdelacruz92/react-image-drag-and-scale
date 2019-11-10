@@ -17,6 +17,11 @@ export const useStyles = MaterialUI.makeStyles(theme => {
         cursor: "nesw-resize"
       }
     },
+    nwseTransformerControl: {
+      "&:hover": {
+        cursor: "nwse-resize"
+      }
+    },
     transformerControl: {
       position: "absolute",
       zIndex: 2,
@@ -51,6 +56,11 @@ export const useStyles = MaterialUI.makeStyles(theme => {
       left: "50%",
       bottom: 0,
       transform: "translate(-50%, 50%)"
+    },
+    bottomRightTr: {
+      right: 0,
+      bottom: 0,
+      transform: "translate(50%, 50%)"
     },
     container: {
       width: props => props.rect.scaledWidth,
