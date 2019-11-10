@@ -11,7 +11,6 @@ const Container = props => {
       {controls.map((control, i) =>
         createControl({
           key: i,
-          Component: control.component,
           onMouseDown: control.onMouseDown,
           className: control.className
         })
