@@ -12,7 +12,7 @@ const Container = props => {
         createControl({
           key: i,
           id: control.id,
-          className: control.className
+          className: `${control.className} ${transformer.id}`
         })
       )}
       {children}

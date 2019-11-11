@@ -22,21 +22,9 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const Translator = props => {
-  const { children, data, setData, imageState } = props;
-  const classes = useStyles(data);
+  const { children, data } = props;
+  const classes = useStyles(data.data);
 
-  React.useEffect(() => {
-    const onMouseMove = e => {
-      if (imageState.type === "translator") {
-        console.log("Translating");
-      }
-      e.preventDefault();
-    };
-    document.addEventListener("mousemove", onMouseMove);
-    return () => {
-      document.removeEventListener("mousemove", onMouseMove);
-    };
-  }, [imageState, data, setData]);
   return (
     <React.Fragment>
       <div className={classes.translator}>{children}</div>
