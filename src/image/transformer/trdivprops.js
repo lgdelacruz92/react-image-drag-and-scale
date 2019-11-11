@@ -2,15 +2,14 @@ import React from "react";
 import TrDiv from "./trdiv";
 import clsx from "clsx";
 
-export const createControl = ({ key, onMouseDown, className }) => {
-  return <TrDiv key={key} onMouseDown={onMouseDown} className={className} />;
+export const createControl = ({ key, id, className }) => {
+  return <TrDiv key={key} id={id} className={`${className} transformer`} />;
 };
 
-export const useControls = ({ setTransformer, transformer, classes }) => {
+export const useControls = ({ classes }) => {
   let controls = [
     {
-      onMouseDown: () =>
-        setTransformer({ ...transformer, topRightTransforming: true }),
+      id: "top-right-tr",
       className: clsx(
         classes.neswTransformerControl,
         classes.transformerControl,
@@ -19,8 +18,7 @@ export const useControls = ({ setTransformer, transformer, classes }) => {
       )
     },
     {
-      onMouseDown: () =>
-        setTransformer({ ...transformer, topTransforming: true }),
+      id: "top-tr",
       className: clsx(
         classes.verticalTransformerControl,
         classes.transformerControl,
@@ -29,8 +27,7 @@ export const useControls = ({ setTransformer, transformer, classes }) => {
       )
     },
     {
-      onMouseDown: () =>
-        setTransformer({ ...transformer, rightTransforming: true }),
+      id: "right-tr",
       className: clsx(
         classes.horizontalTransformerControl,
         classes.transformerControl,
@@ -39,8 +36,7 @@ export const useControls = ({ setTransformer, transformer, classes }) => {
       )
     },
     {
-      onMouseDown: () =>
-        setTransformer({ ...transformer, bottomTransforming: true }),
+      id: "bottom-tr",
       className: clsx(
         classes.verticalTransformerControl,
         classes.transformerControl,
@@ -49,8 +45,7 @@ export const useControls = ({ setTransformer, transformer, classes }) => {
       )
     },
     {
-      onMouseDown: () =>
-        setTransformer({ ...transformer, bottomRightTransforming: true }),
+      id: "bottom-right-tr",
       className: clsx(
         classes.nwseTransformerControl,
         classes.transformerControl,
@@ -59,8 +54,7 @@ export const useControls = ({ setTransformer, transformer, classes }) => {
       )
     },
     {
-      onMouseDown: () =>
-        setTransformer({ ...transformer, leftTransforming: true }),
+      id: "left-tr",
       className: clsx(
         classes.horizontalTransformerControl,
         classes.transformerControl,
@@ -69,8 +63,7 @@ export const useControls = ({ setTransformer, transformer, classes }) => {
       )
     },
     {
-      onMouseDown: () =>
-        setTransformer({ ...transformer, bottomLeftTransforming: true }),
+      id: "bottom-left-tr",
       className: clsx(
         classes.neswTransformerControl,
         classes.transformerControl,
@@ -79,8 +72,7 @@ export const useControls = ({ setTransformer, transformer, classes }) => {
       )
     },
     {
-      onMouseDown: () =>
-        setTransformer({ ...transformer, topLeftTransforming: true }),
+      id: "top-left-tr",
       className: clsx(
         classes.nwseTransformerControl,
         classes.transformerControl,

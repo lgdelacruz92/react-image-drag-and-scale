@@ -26,7 +26,8 @@ export const useStyles = MaterialUI.makeStyles(theme => {
       position: "absolute",
       zIndex: 2,
       background: "lightgrey",
-      boxShadow: "0px 1px 2px black"
+      boxShadow: "0px 1px 2px black",
+      pointerEvents: "auto"
     },
     cornerTransformer: {
       width: 10,
@@ -74,10 +75,10 @@ export const useStyles = MaterialUI.makeStyles(theme => {
       transform: "translate(-50%, -50%)"
     },
     container: {
-      width: props => props.rect.scaledWidth,
-      height: props => props.rect.scaledHeight,
+      width: props => props.scaledWidth,
+      height: props => props.scaledHeight,
       transform: props =>
-        `translate(${props.rect.translateX}px, ${props.rect.translateY}px)`
+        `translate(${props.translateX}px, ${props.translateY}px)`
     }
   };
 });

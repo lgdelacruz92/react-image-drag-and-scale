@@ -6,25 +6,43 @@ const useStyles = MaterialUI.makeStyles(theme => {
     translator: {
       fontSize: 0,
       display: "inline-block",
-      transform: props => `translate(${props.x}px, ${props.y}px)`
+      transform: props => `translate(${props.x}px, ${props.y}px)`,
+      position: "relative"
+    },
+    overlay: {
+      position: "absolute",
+      top: props => props.y + props.translateY + 5,
+      left: props => props.x + props.translateX + 5,
+      width: props => props.scaledWidth - 10,
+      height: props => props.scaledHeight - 10,
+      pointerEvents: "auto",
+      zIndex: 1
     }
   };
 });
 
 const Translator = props => {
-  const { children, data } = props;
-  const classes = useStyles({
-    x: data.x,
-    y: data.y
-  });
+  const { children, data, setData, imageState } = props;
+  const classes = useStyles(data);
 
   React.useEffect(() => {
-    console.log("Mounting translator");
-    return () => {
-      console.log("Unmounting translator");
+    const onMouseMove = e => {
+      if (imageState.type === "translator") {
+        console.log("Translating");
+      }
+      e.preventDefault();
     };
-  });
-  return <div className={classes.translator}>{children}</div>;
+    document.addEventListener("mousemove", onMouseMove);
+    return () => {
+      document.removeEventListener("mousemove", onMouseMove);
+    };
+  }, [imageState, data, setData]);
+  return (
+    <React.Fragment>
+      <div className={classes.translator}>{children}</div>
+      <div className={`${classes.overlay} translator`} />
+    </React.Fragment>
+  );
 };
 
 export default Translator;

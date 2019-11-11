@@ -7,7 +7,8 @@ const useStyles = MaterialUI.makeStyles(theme => {
   return {
     container: {
       width: 0,
-      height: 0
+      height: 0,
+      pointerEvents: "none"
     },
     img: {
       display: "inline-block",
@@ -20,16 +21,35 @@ const useStyles = MaterialUI.makeStyles(theme => {
 
 const Image = props => {
   const { data } = props;
-  const [state, setState] = React.useState({ ...data, action: "" });
+  const [state, setState] = React.useState({ type: null, id: null });
+  const [theData, setData] = React.useState(data);
   const classes = useStyles();
-  const updateData = newData => {
-    setState({ ...newData });
-  };
+
+  React.useEffect(() => {
+    const onMouseDown = e => {
+      if (e.target.classList.contains("transformer")) {
+        setState({ type: "transformer", id: e.target.id });
+      } else if (e.target.classList.contains("translator")) {
+        setState({ type: "translator", id: e.target.id });
+      }
+      e.preventDefault();
+    };
+    const onMouseUp = e => {
+      setState({ type: null, id: null });
+      e.preventDefault();
+    };
+    document.addEventListener("mouseup", onMouseUp);
+    document.addEventListener("mousedown", onMouseDown);
+    return () => {
+      document.removeEventListener("mouseup", onMouseUp);
+      document.removeEventListener("mousedown", onMouseDown);
+    };
+  }, []);
 
   return (
     <div className={classes.container}>
-      <Translator data={state} updateData={updateData}>
-        <Transformer data={state} updateData={updateData}>
+      <Translator data={theData} setData={setData} imageState={state}>
+        <Transformer data={theData} setData={setData} imageState={state}>
           <img
             className={classes.img}
             onLoad={() => console.log("Image loading")}

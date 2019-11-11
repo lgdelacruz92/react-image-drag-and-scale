@@ -1,39 +1,24 @@
 import React from "react";
 import Container from "./container";
-import { useEventHandlers } from "./eventhandler";
+import { handleMouseMove } from "./eventhandler";
 
 const Transformer = props => {
-  const { data, children } = props;
-  const [state, setState] = React.useState({
-    rightTransforming: false,
-    topTransforming: false,
-    topRightTransforming: false,
-    bottomTransforming: false,
-    bottomRightTransforming: false,
-    leftTransforming: false,
-    bottomLeftTransforming: false,
-    topLeftTransforming: false,
-    rect: data
-  });
-  const [onMouseMove, onMouseUp] = useEventHandlers({ setState });
+  const { data, setData, children, imageState } = props;
 
   React.useEffect(() => {
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp);
-
-    return () => {
-      // TODO update x and y and width and height of original data
-      // in database
-      document.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseup", onMouseUp);
+    const onMouseMove = e => {
+      if (imageState.type === "transformer") {
+        setData(handleMouseMove(e, data, imageState.id));
+      }
+      e.preventDefault();
     };
-  }, [onMouseMove, onMouseUp]);
+    document.addEventListener("mousemove", onMouseMove);
+    return () => {
+      document.removeEventListener("mousemove", onMouseMove);
+    };
+  }, [imageState, data, setData]);
 
-  return (
-    <Container transformer={state} setTransformer={setState}>
-      {children}
-    </Container>
-  );
+  return <Container transformer={data}>{children}</Container>;
 };
 
 export default Transformer;
