@@ -16,7 +16,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
       width: props => props.scaledWidth - 10,
       height: props => props.scaledHeight - 10,
       pointerEvents: "auto",
-      zIndex: 1
+      zIndex: props => props.index * 2
     }
   };
 });

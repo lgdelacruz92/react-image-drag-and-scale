@@ -25,7 +25,7 @@ const Image = props => {
   const [state, setState] = React.useState({
     data: data,
     status: null,
-    id: "unique-id",
+    id: `unique-id${data.id}`,
     targetType: null,
     targetId: null
   });
@@ -39,12 +39,15 @@ const Image = props => {
         theTargetType = "transformer";
         theTargetId = e.target.id;
       }
-      setState(s => ({
-        ...s,
-        status: "mouse-down",
-        targetType: theTargetType,
-        targetId: theTargetId
-      }));
+      if (e.target.classList.contains(state.id)) {
+        setState(s => ({
+          ...s,
+          status: "mouse-down",
+          targetType: theTargetType,
+          targetId: theTargetId
+        }));
+      }
+
       e.preventDefault();
     };
 
@@ -59,6 +62,7 @@ const Image = props => {
         }
         return { ...s };
       });
+
       e.preventDefault();
     };
 

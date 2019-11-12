@@ -4,7 +4,7 @@ import { createControl, useControls } from "./trdivprops";
 
 const Container = props => {
   const { children, transformer } = props;
-  const classes = useStyles(transformer);
+  const classes = useStyles(transformer.data);
   const [controls] = useControls({ classes });
   return (
     <div className={classes.container}>
