@@ -2,7 +2,7 @@ import React from "react";
 import Transformer from "image/transformer/transformer";
 import * as MaterialUI from "@material-ui/core";
 import Translator from "image/translator/translator";
-import { handleMouseMove } from "./transformer/eventhandler";
+import { handleTransform } from "./transformer/eventhandler";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -25,7 +25,7 @@ const Image = props => {
   const [state, setState] = React.useState({
     data: data,
     status: null,
-    id: `unique-id${data.id}`,
+    imageId: `unique-id${data.id}`,
     targetType: null,
     targetId: null
   });
@@ -39,7 +39,7 @@ const Image = props => {
         theTargetType = "transformer";
         theTargetId = e.target.id;
       }
-      if (e.target.classList.contains(state.id)) {
+      if (e.target.classList.contains(state.imageId)) {
         setState(s => ({
           ...s,
           status: "mouse-down",
@@ -55,10 +55,14 @@ const Image = props => {
       setState(s => {
         if (s.status === "mouse-down") {
           // get type of action
+
           if (s.targetType === "transformer") {
-            const transformedData = handleMouseMove(e, s.data, s.targetId);
+            const transformedData = handleTransform(e, s);
             return { ...s, data: transformedData };
           }
+          //else if (s.targetType === "translator") {
+          //   return { ...s };
+          // }
         }
         return { ...s };
       });
@@ -83,7 +87,7 @@ const Image = props => {
       document.removeEventListener("mousedown", onMouseDown);
       document.removeEventListener("mousemove", onMouseMove);
     };
-  }, [data, state.id]);
+  }, [data, state.imageId]);
 
   return (
     <div className={classes.container}>

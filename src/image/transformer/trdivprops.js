@@ -1,9 +1,8 @@
 import React from "react";
-import TrDiv from "./trdiv";
 import clsx from "clsx";
 
 export const createControl = ({ key, id, className }) => {
-  return <TrDiv key={key} id={id} className={`${className} transformer`} />;
+  return <div key={key} id={id} className={`${className} transformer`} />;
 };
 
 export const useControls = ({ classes }) => {

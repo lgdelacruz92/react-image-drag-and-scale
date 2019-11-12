@@ -1,10 +1,23 @@
 import React from "react";
-import Container from "./container";
+import { useStyles } from "./styles";
+import { createControl, useControls } from "./trdivprops";
 
 const Transformer = props => {
-  const { data, children } = props;
-
-  return <Container transformer={data}>{children}</Container>;
+  const { children, data } = props;
+  const classes = useStyles(data.data);
+  const [controls] = useControls({ classes });
+  return (
+    <div className={classes.container}>
+      {controls.map((control, i) =>
+        createControl({
+          key: i,
+          id: control.id,
+          className: `${control.className} ${data.imageId}`
+        })
+      )}
+      {children}
+    </div>
+  );
 };
 
 export default Transformer;
