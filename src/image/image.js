@@ -83,7 +83,7 @@ const Image = props => {
       document.removeEventListener("mousedown", onMouseDown);
       document.removeEventListener("mousemove", onMouseMove);
     };
-  }, [data]);
+  }, [data, state.id]);
 
   return (
     <div className={classes.container}>

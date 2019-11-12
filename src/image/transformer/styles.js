@@ -24,7 +24,7 @@ export const useStyles = MaterialUI.makeStyles(theme => {
     },
     transformerControl: {
       position: "absolute",
-      zIndex: props => props.index * 2,
+      zIndex: props => props.index,
       background: "lightgrey",
       boxShadow: "0px 1px 2px black",
       pointerEvents: "auto"
