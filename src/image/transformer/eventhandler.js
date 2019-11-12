@@ -1,7 +1,6 @@
 import { TrUtils } from "./trutils";
 
 export const handleTransform = (e, s) => {
-  console.log("Tranform s", s);
   if (s.targetId === "top-right-tr") {
     TrUtils.transformTopRight({ rect: s.data, mouseEvent: e });
     return { ...s.data };

@@ -1,8 +1,7 @@
 import React from "react";
-import Transformer from "image/transformer/transformer";
+import Transformer, { handleTransform } from "image/transformer";
 import * as MaterialUI from "@material-ui/core";
-import Translator from "image/translator/translator";
-import { handleTransform } from "./transformer/eventhandler";
+import Translator, { handleTranslate } from "image/translator";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -35,8 +34,13 @@ const Image = props => {
     const onMouseDown = e => {
       let theTargetType = null;
       let theTargetId = null;
+      console.log(e.target);
       if (e.target.classList.contains("transformer")) {
         theTargetType = "transformer";
+        theTargetId = e.target.id;
+      } else if (e.target.classList.contains("translator")) {
+        console.log("Contains translator");
+        theTargetType = "translator";
         theTargetId = e.target.id;
       }
       if (e.target.classList.contains(state.imageId)) {
@@ -44,7 +48,13 @@ const Image = props => {
           ...s,
           status: "mouse-down",
           targetType: theTargetType,
-          targetId: theTargetId
+          targetId: theTargetId,
+          startPoint: {
+            x: e.clientX,
+            y: e.clientY,
+            dataX: s.data.x,
+            dataY: s.data.y
+          }
         }));
       }
 
@@ -59,10 +69,10 @@ const Image = props => {
           if (s.targetType === "transformer") {
             const transformedData = handleTransform(e, s);
             return { ...s, data: transformedData };
+          } else if (s.targetType === "translator") {
+            const translatedData = handleTranslate(e, s);
+            return { ...translatedData };
           }
-          //else if (s.targetType === "translator") {
-          //   return { ...s };
-          // }
         }
         return { ...s };
       });

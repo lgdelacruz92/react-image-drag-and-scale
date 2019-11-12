@@ -28,12 +28,7 @@ const Translator = props => {
   return (
     <React.Fragment>
       <div className={classes.translator}>{children}</div>
-      <div
-        onClick={() => {
-          console.log("Translator over lay is clicked", data.data.id);
-        }}
-        className={`${classes.overlay} translator`}
-      />
+      <div className={`${classes.overlay} translator ${data.imageId}`} />
     </React.Fragment>
   );
 };
