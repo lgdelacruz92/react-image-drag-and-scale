@@ -31,25 +31,9 @@ function App() {
     index: 1
   };
 
-  const imageData2 = {
-    x: 400,
-    y: 200,
-    translateX: 0,
-    translateY: 0,
-    scaledWidth: 100,
-    scaledHeight: 100,
-    width: 100,
-    height: 100,
-    src: "https://source.unsplash.com/random/1000x1000",
-    alt: "random",
-    id: "124",
-    index: 2
-  };
-
   return (
     <div className={classes.app}>
       <Image data={imageData} />
-      <Image data={imageData2} />
     </div>
   );
 }

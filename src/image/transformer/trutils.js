@@ -1,5 +1,6 @@
-const transformRight = ({ rect, mouseEvent }) => {
-  rect.scaledWidth = mouseEvent.clientX - rect.translateX - rect.x;
+const transformRight = ({ rect, containerRect, mouseEvent }) => {
+  rect.scaledWidth =
+    mouseEvent.clientX - containerRect.left - rect.translateX - rect.x;
   rect.scaledWidth = rect.scaledWidth < 0 ? 0 : rect.scaledWidth;
 };
 

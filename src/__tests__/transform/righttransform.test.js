@@ -5,17 +5,18 @@ describe("TrUtils Right Transform Test", () => {
     const rect = {
       x: 0,
       y: 0,
-      translateX: 50,
-      translateY: 50,
+      translateX: 0,
+      translateY: 0,
       width: 100,
       height: 100,
       scaledWidth: 100,
       scaledHeight: 100
     };
     const mouseEvent = { clientX: 200 };
-    TrUtils.transformRight({ rect, mouseEvent });
-    expect(rect.translateX).toBe(50);
-    expect(rect.translateY).toBe(50);
+    const containerRect = { left: 50 };
+    TrUtils.transformRight({ rect, containerRect, mouseEvent });
+    expect(rect.translateX).toBe(0);
+    expect(rect.translateY).toBe(0);
     expect(rect.scaledWidth).toBe(150);
     expect(rect.scaledHeight).toBe(100);
   });
@@ -31,11 +32,12 @@ describe("TrUtils Right Transform Test", () => {
       scaledWidth: 100,
       scaledHeight: 100
     };
-    const mouseEvent = { clientX: 200 };
-    TrUtils.transformRight({ rect, mouseEvent });
+    const mouseEvent = { clientX: 300 };
+    const containerRect = { left: 50 };
+    TrUtils.transformRight({ rect, containerRect, mouseEvent });
     expect(rect.translateX).toBe(50);
     expect(rect.translateY).toBe(50);
-    expect(rect.scaledWidth).toBe(100);
+    expect(rect.scaledWidth).toBe(150);
     expect(rect.scaledHeight).toBe(100);
   });
 
@@ -51,10 +53,11 @@ describe("TrUtils Right Transform Test", () => {
       scaledHeight: 100
     };
     const mouseEvent = { clientX: 100 };
-    TrUtils.transformRight({ rect, mouseEvent });
+    const containerRect = { left: 50 };
+    TrUtils.transformRight({ rect, containerRect, mouseEvent });
     expect(rect.translateX).toBe(50);
     expect(rect.translateY).toBe(50);
-    expect(rect.scaledWidth).toBe(50);
+    expect(rect.scaledWidth).toBe(0);
     expect(rect.scaledHeight).toBe(100);
   });
 
@@ -70,7 +73,8 @@ describe("TrUtils Right Transform Test", () => {
       scaledHeight: 100
     };
     const mouseEvent = { clientX: 30 };
-    TrUtils.transformRight({ rect, mouseEvent });
+    const containerRect = { left: 50 };
+    TrUtils.transformRight({ rect, containerRect, mouseEvent });
     expect(rect.translateX).toBe(50);
     expect(rect.translateY).toBe(50);
     expect(rect.scaledWidth).toBe(0);
