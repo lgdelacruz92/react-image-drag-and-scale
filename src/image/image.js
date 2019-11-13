@@ -1,7 +1,7 @@
 import React from "react";
-import Transformer, { handleTransform } from "image/transformer";
+import Transformer, { handleTransform } from "./transformer";
 import * as MaterialUI from "@material-ui/core";
-import Translator, { handleTranslate } from "image/translator";
+import Translator, { handleTranslate } from "./translator";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
@@ -34,12 +34,10 @@ const Image = props => {
     const onMouseDown = e => {
       let theTargetType = null;
       let theTargetId = null;
-      console.log(e.target);
       if (e.target.classList.contains("transformer")) {
         theTargetType = "transformer";
         theTargetId = e.target.id;
       } else if (e.target.classList.contains("translator")) {
-        console.log("Contains translator");
         theTargetType = "translator";
         theTargetId = e.target.id;
       }
@@ -105,7 +103,6 @@ const Image = props => {
         <Transformer data={state}>
           <img
             className={classes.img}
-            onLoad={() => console.log("Image loading")}
             src={state.data.src}
             alt={state.data.alt}
           />

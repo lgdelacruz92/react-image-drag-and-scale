@@ -1,4 +1,4 @@
-import { TrUtils } from "image/transformer/trutils";
+import { TrUtils } from "../../image/transformer/trutils";
 
 describe("TrUtils Right Transform Test", () => {
   test("transform right should scale to the right", () => {

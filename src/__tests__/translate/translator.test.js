@@ -1,4 +1,4 @@
-import { handleTranslate } from "image/translator";
+import { handleTranslate } from "../../image/translator";
 describe("Event Handler Test", () => {
   test("translator should move", () => {
     let dummyState = {

@@ -1,4 +1,4 @@
-import { TrUtils } from "image/transformer/trutils";
+import { TrUtils } from "../../image/transformer/trutils";
 describe("TrUtils Bottom Transform", () => {
   test("transform bottom should scale down", () => {
     const rect = {
