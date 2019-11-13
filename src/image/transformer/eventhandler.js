@@ -3,13 +3,13 @@ import { TrUtils } from "./trutils";
 export const handleTransform = (e, containerRef, s) => {
   const containerRect = containerRef.current.getBoundingClientRect();
   if (s.targetId === "top-right-tr") {
-    TrUtils.transformTopRight({ rect: s.data, mouseEvent: e });
+    TrUtils.transformTopRight({ rect: s.data, containerRect, mouseEvent: e });
     return { ...s.data };
   } else if (s.targetId === "right-tr") {
     TrUtils.transformRight({ rect: s.data, containerRect, mouseEvent: e });
     return { ...s.data };
   } else if (s.targetId === "top-tr") {
-    TrUtils.transformTop({ rect: s.data, mouseEvent: e });
+    TrUtils.transformTop({ rect: s.data, containerRect, mouseEvent: e });
     return { ...s.data };
   } else if (s.targetId === "bottom-tr") {
     TrUtils.transformBottom({ rect: s.data, containerRect, mouseEvent: e });

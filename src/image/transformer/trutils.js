@@ -15,12 +15,12 @@ const transformLeft = ({ rect, mouseEvent }) => {
   }
 };
 
-const transformTop = ({ rect, mouseEvent }) => {
-  let virtualY = rect.translateY + rect.y;
+const transformTop = ({ rect, containerRect, mouseEvent }) => {
+  let virtualY = rect.translateY + rect.y + containerRect.top;
   if (mouseEvent.clientY <= virtualY + rect.scaledHeight) {
     rect.scaledHeight = virtualY + rect.scaledHeight - mouseEvent.clientY;
     virtualY = mouseEvent.clientY;
-    rect.translateY = virtualY - rect.y;
+    rect.translateY = virtualY - rect.y - containerRect.top;
   } else {
     rect.scaledHeight = 0;
   }
@@ -32,9 +32,9 @@ const transformBottom = ({ rect, containerRect, mouseEvent }) => {
   rect.scaledHeight = rect.scaledHeight < 0 ? 0 : rect.scaledHeight;
 };
 
-const transformTopRight = ({ rect, mouseEvent }) => {
-  transformRight({ rect, mouseEvent });
-  transformTop({ rect, mouseEvent });
+const transformTopRight = ({ rect, containerRect, mouseEvent }) => {
+  transformRight({ rect, containerRect, mouseEvent });
+  transformTop({ rect, containerRect, mouseEvent });
 };
 
 const transformBottomRight = ({ rect, containerRect, mouseEvent }) => {
