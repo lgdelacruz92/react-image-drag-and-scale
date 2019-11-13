@@ -11,8 +11,9 @@ describe("TrUtils Bottom Transform", () => {
       scaledWidth: 100,
       scaledHeight: 100
     };
-    const mouseEvent = { clientY: 200 };
-    TrUtils.transformBottom({ rect, mouseEvent });
+    const mouseEvent = { clientY: 300 };
+    const containerRect = { top: 50 };
+    TrUtils.transformBottom({ rect, containerRect, mouseEvent });
     expect(rect.x).toBe(50);
     expect(rect.y).toBe(50);
     expect(rect.translateX).toBe(0);
@@ -20,7 +21,7 @@ describe("TrUtils Bottom Transform", () => {
     expect(rect.width).toBe(100);
     expect(rect.height).toBe(100);
     expect(rect.scaledWidth).toBe(100);
-    expect(rect.scaledHeight).toBe(150);
+    expect(rect.scaledHeight).toBe(200);
   });
 
   test("transform bottom should not make height less than zero", () => {
@@ -35,7 +36,8 @@ describe("TrUtils Bottom Transform", () => {
       scaledHeight: 100
     };
     const mouseEvent = { clientY: 20 };
-    TrUtils.transformBottom({ rect, mouseEvent });
+    const containerRect = { top: 50 };
+    TrUtils.transformBottom({ rect, containerRect, mouseEvent });
     expect(rect.x).toBe(50);
     expect(rect.y).toBe(50);
     expect(rect.translateX).toBe(0);

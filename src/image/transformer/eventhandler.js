@@ -12,10 +12,14 @@ export const handleTransform = (e, containerRef, s) => {
     TrUtils.transformTop({ rect: s.data, mouseEvent: e });
     return { ...s.data };
   } else if (s.targetId === "bottom-tr") {
-    TrUtils.transformBottom({ rect: s.data, mouseEvent: e });
+    TrUtils.transformBottom({ rect: s.data, containerRect, mouseEvent: e });
     return { ...s.data };
   } else if (s.targetId === "bottom-right-tr") {
-    TrUtils.transformBottomRight({ rect: s.data, mouseEvent: e });
+    TrUtils.transformBottomRight({
+      rect: s.data,
+      containerRect,
+      mouseEvent: e
+    });
     return { ...s.data };
   } else if (s.targetId === "left-tr") {
     TrUtils.transformLeft({ rect: s.data, mouseEvent: e });
