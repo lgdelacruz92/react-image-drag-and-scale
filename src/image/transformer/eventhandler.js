@@ -22,13 +22,13 @@ export const handleTransform = (e, containerRef, s) => {
     });
     return { ...s.data };
   } else if (s.targetId === "left-tr") {
-    TrUtils.transformLeft({ rect: s.data, mouseEvent: e });
+    TrUtils.transformLeft({ rect: s.data, containerRect, mouseEvent: e });
     return { ...s.data };
   } else if (s.targetId === "bottom-left-tr") {
-    TrUtils.transformBottomLeft({ rect: s.data, mouseEvent: e });
+    TrUtils.transformBottomLeft({ rect: s.data, containerRect, mouseEvent: e });
     return { ...s.data };
   } else if (s.targetId === "top-left-tr") {
-    TrUtils.transformTopLeft({ rect: s.data, mouseEvent: e });
+    TrUtils.transformTopLeft({ rect: s.data, containerRect, mouseEvent: e });
     return { ...s.data };
   } else {
     return { ...s.data };

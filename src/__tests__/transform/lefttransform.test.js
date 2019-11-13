@@ -13,15 +13,16 @@ describe("TrUtils Right Transform Test", () => {
       scaledHeight: 100
     };
 
-    for (let i = 0; i <= 160; i++) {
+    for (let i = 0; i <= 210; i++) {
       let mouseEvent = { clientX: i };
-      TrUtils.transformLeft({ rect, mouseEvent });
+      const containerRect = { left: 50 };
+      TrUtils.transformLeft({ rect, containerRect, mouseEvent });
       expect(rect.translateY).toBe(50);
       expect(rect.scaledHeight).toBe(100);
 
-      if (i <= 150) {
-        expect(rect.translateX).toBe(-50 + i);
-        expect(rect.scaledWidth).toBe(150 - i);
+      if (i <= 200) {
+        expect(rect.translateX).toBe(-100 + i);
+        expect(rect.scaledWidth).toBe(200 - i);
       } else {
         expect(rect.translateX).toBe(100);
         expect(rect.scaledWidth).toBe(0);

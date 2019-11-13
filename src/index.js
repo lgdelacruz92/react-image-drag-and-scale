@@ -12,12 +12,11 @@ const useStyles = MaterialUI.makeStyles(theme => {
       height: "100%"
     },
     container: {
-      width: 600,
-      height: 600,
+      width: "100%",
+      height: "100%",
       border: "1px solid red",
       position: "absolute",
-      top: 50,
-      left: 50
+      overflow: "hidden"
     }
   };
 });

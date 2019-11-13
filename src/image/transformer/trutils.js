@@ -4,12 +4,12 @@ const transformRight = ({ rect, containerRect, mouseEvent }) => {
   rect.scaledWidth = rect.scaledWidth < 0 ? 0 : rect.scaledWidth;
 };
 
-const transformLeft = ({ rect, mouseEvent }) => {
-  let virtualX = rect.x + rect.translateX;
+const transformLeft = ({ rect, containerRect, mouseEvent }) => {
+  let virtualX = rect.x + rect.translateX + containerRect.left;
   if (mouseEvent.clientX <= virtualX + rect.scaledWidth) {
     rect.scaledWidth = virtualX + rect.scaledWidth - mouseEvent.clientX;
     virtualX = mouseEvent.clientX;
-    rect.translateX = virtualX - rect.x;
+    rect.translateX = virtualX - rect.x - containerRect.left;
   } else {
     rect.scaledWidth = 0;
   }
@@ -42,14 +42,14 @@ const transformBottomRight = ({ rect, containerRect, mouseEvent }) => {
   transformBottom({ rect, containerRect, mouseEvent });
 };
 
-const transformBottomLeft = ({ rect, mouseEvent }) => {
-  transformLeft({ rect, mouseEvent });
-  transformBottom({ rect, mouseEvent });
+const transformBottomLeft = ({ rect, containerRect, mouseEvent }) => {
+  transformLeft({ rect, containerRect, mouseEvent });
+  transformBottom({ rect, containerRect, mouseEvent });
 };
 
-const transformTopLeft = ({ rect, mouseEvent }) => {
-  transformLeft({ rect, mouseEvent });
-  transformTop({ rect, mouseEvent });
+const transformTopLeft = ({ rect, containerRect, mouseEvent }) => {
+  transformLeft({ rect, containerRect, mouseEvent });
+  transformTop({ rect, containerRect, mouseEvent });
 };
 
 export const TrUtils = {
