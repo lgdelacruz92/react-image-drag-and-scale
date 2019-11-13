@@ -10,6 +10,14 @@ const useStyles = MaterialUI.makeStyles(theme => {
       position: "relative",
       width: "100%",
       height: "100%"
+    },
+    container: {
+      width: 600,
+      height: 600,
+      border: "1px solid red",
+      position: "absolute",
+      top: 50,
+      left: 50
     }
   };
 });
@@ -31,9 +39,13 @@ function App() {
     index: 1
   };
 
+  const containerRef = React.useRef();
+
   return (
     <div className={classes.app}>
-      <Image data={imageData} />
+      <div ref={containerRef} className={classes.container}>
+        <Image data={imageData} containerRef={containerRef} />
+      </div>
     </div>
   );
 }

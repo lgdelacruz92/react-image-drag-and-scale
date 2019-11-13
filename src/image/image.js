@@ -20,7 +20,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const Image = props => {
-  const { data } = props;
+  const { data, containerRef } = props;
   const [state, setState] = React.useState({
     data: data,
     status: null,
@@ -65,7 +65,7 @@ const Image = props => {
           // get type of action
 
           if (s.targetType === "transformer") {
-            const transformedData = handleTransform(e, s);
+            const transformedData = handleTransform(e, containerRef, s);
             return { ...s, data: transformedData };
           } else if (s.targetType === "translator") {
             const translatedData = handleTranslate(e, s);
@@ -95,7 +95,7 @@ const Image = props => {
       document.removeEventListener("mousedown", onMouseDown);
       document.removeEventListener("mousemove", onMouseMove);
     };
-  }, [data, state.imageId]);
+  }, [data, state.imageId, containerRef]);
 
   return (
     <div className={classes.container}>
