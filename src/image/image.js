@@ -46,7 +46,7 @@ const Image = React.forwardRef((props, ref) => {
         theTargetType = "translator";
         theTargetId = e.target.id;
       }
-      if (e.target.classList.contains(state.imageId)) {
+      if (e.target.classList.contains(state.imageId) && e.which === 1) {
         onStartUpdate();
         setState(s => ({
           ...s,
