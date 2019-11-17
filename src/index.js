@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import * as MaterialUI from "@material-ui/core";
-import Image from "image/image";
+import Image from "./image";
 import "./styles.css";
 
 const useStyles = MaterialUI.makeStyles(theme => {

@@ -8,7 +8,7 @@ export default [
       file: "dist/index.js",
       format: "es"
     },
-    external: ["react"],
+    external: ["react", "@material-ui/core", "clsx"],
     plugins: [
       babel({
         exclude: "node_modules/.**"

@@ -1,7 +1,9 @@
 import React from "react";
-import Transformer, { handleTransform } from "./transformer";
+import Transformer from "./transformer/transformer";
+import { handleTransform } from "./transformer/eventhandler";
 import * as MaterialUI from "@material-ui/core";
-import Translator, { handleTranslate } from "./translator";
+import Translator from "./translator/translator";
+import { handleTranslate } from "./translator/eventhandler";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
