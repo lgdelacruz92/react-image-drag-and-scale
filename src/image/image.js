@@ -29,7 +29,7 @@ const Image = React.forwardRef((props, ref) => {
   const [state, setState] = React.useState({
     data: data,
     status: null,
-    imageId: `unique-id${data.id}`,
+    imageId: data.id,
     targetType: null,
     targetId: null
   });

@@ -36,7 +36,7 @@ function App() {
     height: 100,
     src: "https://source.unsplash.com/random/1000x1000",
     alt: "random",
-    id: "123",
+    id: "unique-id-123",
     index: 1
   };
 
