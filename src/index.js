@@ -48,6 +48,9 @@ function App() {
       <div ref={containerRef} className={classes.container}>
         <Image
           data={imageData}
+          onContextMenu={e => {
+            console.log("Context menu clicked", e);
+          }}
           onStartUpdate={e => {
             console.log("Update starting", e);
           }}
