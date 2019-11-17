@@ -4,13 +4,19 @@
   "description": "",
   "keywords": [],
   "author": "lgdelacruz92",
-  "repository": "lgdelacruz92/dnscontainer",
+  "repository": "lgdelacruz92/react-image-drag-and-scale",
   "license": "MIT",
   "main": "dist/index.js",
   "dependencies": {
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-scripts": "^3.2.0"
+  },
+  "peerDependencies": {
+    "@material-ui/core": "^4.6.1",
+    "clsx": "^1.0.4",
+    "typescript": "^3.7.2",
+    "prop-types": "^15.5.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.0",
