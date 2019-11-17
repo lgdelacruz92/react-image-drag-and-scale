@@ -75,6 +75,7 @@ export const useStyles = MaterialUI.makeStyles(theme => {
       transform: "translate(-50%, -50%)"
     },
     container: {
+      position: "absolute",
       width: props => props.scaledWidth,
       height: props => props.scaledHeight,
       transform: props =>

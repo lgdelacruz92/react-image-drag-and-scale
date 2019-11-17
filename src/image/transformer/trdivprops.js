@@ -1,8 +1,15 @@
 import React from "react";
 import clsx from "clsx";
 
-export const createControl = ({ key, id, className }) => {
-  return <div key={key} id={id} className={`${className} transformer`} />;
+export const createControl = ({ key, id, className, hidden }) => {
+  return (
+    <div
+      key={key}
+      id={id}
+      className={`${className} transformer`}
+      hidden={hidden}
+    />
+  );
 };
 
 export const useControls = ({ classes }) => {

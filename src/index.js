@@ -12,11 +12,13 @@ const useStyles = MaterialUI.makeStyles(theme => {
       height: "100%"
     },
     container: {
-      width: "100%",
-      height: "100%",
+      width: 500,
+      height: 500,
       border: "1px solid red",
-      position: "absolute",
-      overflow: "hidden"
+      position: "relative",
+      overflow: "hidden",
+      top: 50,
+      left: 50
     }
   };
 });
@@ -39,12 +41,24 @@ function App() {
   };
 
   const containerRef = React.useRef();
+  const [transform, setTransform] = React.useState(false);
 
   return (
     <div className={classes.app}>
       <div ref={containerRef} className={classes.container}>
-        <Image data={imageData} containerRef={containerRef} />
+        <Image
+          data={imageData}
+          onStartUpdate={() => {
+            console.log("Update starting");
+          }}
+          containerRef={containerRef}
+          selected={transform}
+          onEndUpdate={() => {
+            console.log("End update");
+          }}
+        />
       </div>
+      <button onClick={() => setTransform(!transform)}>Deselect</button>
     </div>
   );
 }

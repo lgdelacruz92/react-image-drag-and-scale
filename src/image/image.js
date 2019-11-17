@@ -5,11 +5,6 @@ import Translator, { handleTranslate } from "./translator";
 
 const useStyles = MaterialUI.makeStyles(theme => {
   return {
-    container: {
-      width: 0,
-      height: 0,
-      pointerEvents: "none"
-    },
     img: {
       display: "inline-block",
       width: "100%",
@@ -19,8 +14,15 @@ const useStyles = MaterialUI.makeStyles(theme => {
   };
 });
 
-const Image = props => {
-  const { data, containerRef } = props;
+const Image = React.forwardRef((props, ref) => {
+  const {
+    data,
+    containerRef,
+    onUpdate,
+    selected,
+    onStartUpdate,
+    onEndUpdate
+  } = props;
   const [state, setState] = React.useState({
     data: data,
     status: null,
@@ -29,8 +31,9 @@ const Image = props => {
     targetId: null
   });
   const classes = useStyles();
-
   React.useEffect(() => {
+    const containerRect = containerRef.current.getBoundingClientRect();
+
     const onMouseDown = e => {
       let theTargetType = null;
       let theTargetId = null;
@@ -42,6 +45,7 @@ const Image = props => {
         theTargetId = e.target.id;
       }
       if (e.target.classList.contains(state.imageId)) {
+        onStartUpdate();
         setState(s => ({
           ...s,
           status: "mouse-down",
@@ -60,31 +64,38 @@ const Image = props => {
     };
 
     const onMouseMove = e => {
-      setState(s => {
-        if (s.status === "mouse-down") {
+      if (state.status === "mouse-down") {
+        setState(s => {
           // get type of action
-
           if (s.targetType === "transformer") {
-            const transformedData = handleTransform(e, containerRef, s);
-            return { ...s, data: transformedData };
+            const newEvent = {
+              clientX: e.clientX - containerRect.left,
+              clientY: e.clientY - containerRect.top
+            };
+            handleTransform(newEvent, s);
+            return { ...s };
           } else if (s.targetType === "translator") {
-            const translatedData = handleTranslate(e, s);
-            return { ...translatedData };
+            handleTranslate(e, s);
+            return { ...s };
           }
-        }
-        return { ...s };
-      });
+          return { ...s };
+        });
+      }
 
       e.preventDefault();
     };
 
     const onMouseUp = e => {
-      setState(s => ({
-        ...s,
-        status: "mouse-up",
-        targetType: null,
-        targetId: null
-      }));
+      if (state.status === "mouse-down") {
+        onEndUpdate();
+        setState(s => ({
+          ...s,
+          status: "mouse-up",
+          targetType: null,
+          targetId: null
+        }));
+      }
+
       e.preventDefault();
     };
     document.addEventListener("mouseup", onMouseUp);
@@ -95,21 +106,35 @@ const Image = props => {
       document.removeEventListener("mousedown", onMouseDown);
       document.removeEventListener("mousemove", onMouseMove);
     };
-  }, [data, state.imageId, containerRef]);
+  }, [
+    data,
+    state.imageId,
+    state.status,
+    containerRef,
+    onStartUpdate,
+    onEndUpdate
+  ]);
+
+  React.useEffect(() => {
+    if (ref) {
+      ref.current = state;
+      if (onUpdate) {
+        onUpdate();
+      }
+    }
+  }, [state, onUpdate, ref]);
 
   return (
-    <div className={classes.container}>
-      <Translator data={state}>
-        <Transformer data={state}>
-          <img
-            className={classes.img}
-            src={state.data.src}
-            alt={state.data.alt}
-          />
-        </Transformer>
-      </Translator>
-    </div>
+    <Translator data={state}>
+      <Transformer data={state} hidden={selected}>
+        <img
+          className={classes.img}
+          src={state.data.src}
+          alt={state.data.alt}
+        />
+      </Transformer>
+    </Translator>
   );
-};
+});
 
 export default Image;
