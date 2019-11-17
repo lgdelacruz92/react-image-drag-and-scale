@@ -7,7 +7,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
       fontSize: 0,
       position: "absolute",
       transform: props => `translate(${props.x}px, ${props.y}px)`,
-      zIndex: props => props.index
+      zIndex: 0
     },
     overlay: {
       position: "absolute",
@@ -18,7 +18,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
       width: props => props.scaledWidth - 10,
       height: props => props.scaledHeight - 10,
       pointerEvents: "auto",
-      zIndex: props => props.index + 1
+      zIndex: 0
     }
   };
 });
@@ -29,11 +29,11 @@ const Translator = props => {
 
   return (
     <React.Fragment>
+      <div className={classes.translator}>{children}</div>
       <div
         className={`${classes.overlay} translator ${data.imageId}`}
         onContextMenu={onContextMenu}
       />
-      <div className={classes.translator}>{children}</div>
     </React.Fragment>
   );
 };

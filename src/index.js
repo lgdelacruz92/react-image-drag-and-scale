@@ -41,7 +41,7 @@ function App() {
   };
 
   const imageData2 = {
-    x: 50,
+    x: 100,
     y: 200,
     translateX: 0,
     translateY: 0,
@@ -51,8 +51,7 @@ function App() {
     height: 100,
     src: "https://source.unsplash.com/random/1000x1000",
     alt: "random",
-    id: "unique-id-124",
-    index: 1
+    id: "unique-id-124"
   };
 
   const containerRef = React.useRef();
@@ -61,7 +60,7 @@ function App() {
     <div className={classes.app}>
       <div ref={containerRef} className={classes.container}>
         <Image
-          data={imageData}
+          data={imageData2}
           onContextMenu={e => {
             console.log("Context menu clicked", e);
           }}
@@ -75,7 +74,7 @@ function App() {
         />
 
         <Image
-          data={imageData2}
+          data={imageData}
           onContextMenu={e => {
             console.log("Context menu clicked", e);
           }}
