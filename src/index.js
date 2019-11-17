@@ -37,11 +37,25 @@ function App() {
     src: "https://source.unsplash.com/random/1000x1000",
     alt: "random",
     id: "unique-id-123",
+    index: 0
+  };
+
+  const imageData2 = {
+    x: 50,
+    y: 200,
+    translateX: 0,
+    translateY: 0,
+    scaledWidth: 100,
+    scaledHeight: 100,
+    width: 100,
+    height: 100,
+    src: "https://source.unsplash.com/random/1000x1000",
+    alt: "random",
+    id: "unique-id-124",
     index: 1
   };
 
   const containerRef = React.useRef();
-  const [transform, setTransform] = React.useState(false);
 
   return (
     <div className={classes.app}>
@@ -55,13 +69,25 @@ function App() {
             console.log("Update starting", e);
           }}
           containerRef={containerRef}
-          selected={transform}
+          onEndUpdate={e => {
+            console.log("End update", e);
+          }}
+        />
+
+        <Image
+          data={imageData2}
+          onContextMenu={e => {
+            console.log("Context menu clicked", e);
+          }}
+          onStartUpdate={e => {
+            console.log("Update starting", e);
+          }}
+          containerRef={containerRef}
           onEndUpdate={e => {
             console.log("End update", e);
           }}
         />
       </div>
-      <button onClick={() => setTransform(!transform)}>Deselect</button>
     </div>
   );
 }
