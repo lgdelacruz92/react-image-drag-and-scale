@@ -48,13 +48,13 @@ function App() {
       <div ref={containerRef} className={classes.container}>
         <Image
           data={imageData}
-          onStartUpdate={() => {
-            console.log("Update starting");
+          onStartUpdate={e => {
+            console.log("Update starting", e);
           }}
           containerRef={containerRef}
           selected={transform}
-          onEndUpdate={() => {
-            console.log("End update");
+          onEndUpdate={e => {
+            console.log("End update", e);
           }}
         />
       </div>

@@ -47,7 +47,7 @@ const Image = React.forwardRef((props, ref) => {
         theTargetId = e.target.id;
       }
       if (e.target.classList.contains(state.imageId) && e.which === 1) {
-        onStartUpdate();
+        onStartUpdate(e);
         setState(s => ({
           ...s,
           status: "mouse-down",
@@ -89,7 +89,7 @@ const Image = React.forwardRef((props, ref) => {
 
     const onMouseUp = e => {
       if (state.status === "mouse-down") {
-        onEndUpdate();
+        onEndUpdate(e);
         setState(s => ({
           ...s,
           status: "mouse-up",
