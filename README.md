@@ -4,7 +4,7 @@
 
 [![NPM](https://img.shields.io/npm/v/image-drag-and-scale.svg)](https://www.npmjs.com/package/image-drag-and-scale) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-[![](https://media.giphy.com/media/RIvgoHlZbxnd4DpjTk/giphy.gif)](https://media.giphy.com/media/RIvgoHlZbxnd4DpjTk/giphy.gif)
+[![](https://media.giphy.com/media/YmiC7E6aX3xZu5pIZN/giphy.gif)](https://media.giphy.com/media/YmiC7E6aX3xZu5pIZN/giphy.gif)
 
 ## Install
 
