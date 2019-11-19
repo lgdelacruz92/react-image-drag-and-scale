@@ -89,9 +89,13 @@ ReactDOM.render(<App />, rootElement);
 
 # Version Update
 
-## v1.0.0
+## v1.0.11
 
 > First release. If you find issues, please post an issue on the github
+
+# v1.0.11
+
+> events leaking issue
 
 ## License
 
