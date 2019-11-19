@@ -61,9 +61,8 @@ const Image = React.forwardRef((props, ref) => {
             dataY: s.data.y
           }
         }));
+        e.preventDefault();
       }
-
-      e.preventDefault();
     };
 
     const onMouseMove = e => {
@@ -83,9 +82,8 @@ const Image = React.forwardRef((props, ref) => {
           }
           return { ...s };
         });
+        e.preventDefault();
       }
-
-      e.preventDefault();
     };
 
     const onMouseUp = e => {
@@ -97,9 +95,8 @@ const Image = React.forwardRef((props, ref) => {
           targetType: null,
           targetId: null
         }));
+        e.preventDefault();
       }
-
-      e.preventDefault();
     };
     document.addEventListener("mouseup", onMouseUp);
     document.addEventListener("mousedown", onMouseDown);
