@@ -8,8 +8,8 @@
   "license": "MIT",
   "main": "dist/index.js",
   "dependencies": {
-    "react": "16.8.6",
-    "react-dom": "16.8.6",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-scripts": "^3.2.0"
   },
   "peerDependencies": {
@@ -17,7 +17,9 @@
     "clsx": "^1.0.4",
     "typescript": "^3.x",
     "prop-types": "^15.x",
-    "react": "^16.8.6"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "^3.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.0",
