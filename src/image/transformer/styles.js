@@ -30,14 +30,16 @@ export const useStyles = MaterialUI.makeStyles(theme => {
       pointerEvents: "auto"
     },
     cornerTransformer: {
-      width: 10,
-      height: 10,
-      borderRadius: "50%"
+      width: 7,
+      height: 7,
+      borderRadius: "50%",
+      background: "rgb(240, 240, 240)"
     },
     edgeTransformer: {
-      width: 50,
-      height: 10,
-      borderRadius: "3px"
+      width: 30,
+      height: 4,
+      borderRadius: "3px",
+      background: "rgb(240, 240, 240)"
     },
     rightTr: {
       top: "50%",
@@ -78,6 +80,7 @@ export const useStyles = MaterialUI.makeStyles(theme => {
       position: "absolute",
       width: props => props.scaledWidth,
       height: props => props.scaledHeight,
+      border: "2px solid rgb(111, 247, 243)",
       transform: props =>
         `translate(${props.translateX}px, ${props.translateY}px)`
     }
