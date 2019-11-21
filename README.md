@@ -6,6 +6,11 @@
 
 [![](https://media.giphy.com/media/YmiC7E6aX3xZu5pIZN/giphy.gif)](https://media.giphy.com/media/YmiC7E6aX3xZu5pIZN/giphy.gif)
 
+# Whats new in version 2.0.0?
+
+> Redesigned selected look
+> Added support for referencing image to get the current state
+
 ## Install
 
 ```bash
@@ -21,7 +26,7 @@ yarn add react-image-drag-and-scale
 import React from "react";
 import ReactDOM from "react-dom";
 import * as MaterialUI from "@material-ui/core";
-import Image from "image/image";
+import Image from "./image";
 import "./styles.css";
 
 const useStyles = MaterialUI.makeStyles(theme => {
@@ -56,29 +61,57 @@ function App() {
     height: 100,
     src: "https://source.unsplash.com/random/1000x1000",
     alt: "random",
-    id: "123",
-    index: 1
+    id: "unique-id-123",
+    index: 0
+  };
+
+  const imageData2 = {
+    x: 100,
+    y: 200,
+    translateX: 0,
+    translateY: 0,
+    scaledWidth: 100,
+    scaledHeight: 100,
+    width: 100,
+    height: 100,
+    src: "https://source.unsplash.com/random/1000x1000",
+    alt: "random",
+    id: "unique-id-124"
   };
 
   const containerRef = React.useRef();
-  const [transform, setTransform] = React.useState(false);
 
   return (
     <div className={classes.app}>
       <div ref={containerRef} className={classes.container}>
         <Image
-          data={imageData}
-          onStartUpdate={() => {
-            console.log("Update starting");
+          data={imageData2}
+          onContextMenu={e => {
+            console.log("Context menu clicked", e);
+          }}
+          onStartUpdate={e => {
+            console.log("Update starting", e);
           }}
           containerRef={containerRef}
-          selected={transform}
-          onEndUpdate={() => {
-            console.log("End update");
+          onEndUpdate={e => {
+            console.log("End update", e);
+          }}
+        />
+
+        <Image
+          data={imageData}
+          onContextMenu={e => {
+            console.log("Context menu clicked", e);
+          }}
+          onStartUpdate={e => {
+            console.log("Update starting", e);
+          }}
+          containerRef={containerRef}
+          onEndUpdate={e => {
+            console.log("End update", e);
           }}
         />
       </div>
-      <button onClick={() => setTransform(!transform)}>Deselect</button>
     </div>
   );
 }
@@ -89,7 +122,7 @@ ReactDOM.render(<App />, rootElement);
 
 # Version Update
 
-## v1.1.0
+## v2.0.0
 
 > First release. If you find issues, please post an issue on the github
 
