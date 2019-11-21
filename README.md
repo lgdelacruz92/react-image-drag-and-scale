@@ -6,7 +6,7 @@
 
 [![](https://media.giphy.com/media/YmiC7E6aX3xZu5pIZN/giphy.gif)](https://media.giphy.com/media/YmiC7E6aX3xZu5pIZN/giphy.gif)
 
-# Whats new in version 2.0.0?
+# Whats new in version 3.0.0?
 
 > Redesigned selected look
 > Added support for referencing image to get the current state
@@ -122,7 +122,7 @@ ReactDOM.render(<App />, rootElement);
 
 # Version Update
 
-## v2.0.0
+## v3.0.0
 
 > First release. If you find issues, please post an issue on the github
 
