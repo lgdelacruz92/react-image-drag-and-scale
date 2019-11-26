@@ -124,6 +124,10 @@ const Image = React.forwardRef((props, ref) => {
     }
   }, [state, onUpdate, ref]);
 
+  React.useEffect(() => {
+    setState(s => ({ ...s, data: data }));
+  }, [data]);
+
   return (
     <Translator data={state} onContextMenu={onContextMenu}>
       <Transformer data={state} hidden={selected}>
