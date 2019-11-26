@@ -71,6 +71,7 @@ function App() {
           onEndUpdate={e => {
             console.log("End update", e);
           }}
+          selected={true}
         />
 
         <Image
@@ -85,6 +86,7 @@ function App() {
           onEndUpdate={e => {
             console.log("End update", e);
           }}
+          selected={false}
         />
       </div>
     </div>

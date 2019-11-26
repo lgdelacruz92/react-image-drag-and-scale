@@ -24,7 +24,7 @@ const useStyles = MaterialUI.makeStyles(theme => {
 });
 
 const Translator = props => {
-  const { children, data, onContextMenu } = props;
+  const { children, data, onContextMenu, onClick } = props;
   const classes = useStyles(data.data);
 
   return (
@@ -33,6 +33,7 @@ const Translator = props => {
       <div
         className={`${classes.overlay} translator ${data.imageId}`}
         onContextMenu={onContextMenu}
+        onClick={onClick}
       />
     </React.Fragment>
   );

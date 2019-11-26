@@ -4,6 +4,7 @@ import { createControl, useControls } from "./trdivprops";
 
 const Transformer = props => {
   const { children, data, hidden } = props;
+  data.data.hidden = hidden;
   const classes = useStyles(data.data);
   const [controls] = useControls({ classes });
   return (

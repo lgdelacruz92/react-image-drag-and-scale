@@ -80,7 +80,7 @@ export const useStyles = MaterialUI.makeStyles(theme => {
       position: "absolute",
       width: props => props.scaledWidth,
       height: props => props.scaledHeight,
-      border: "2px solid rgb(111, 247, 243)",
+      border: props => (props.hidden ? "" : "2px solid rgb(111, 247, 243)"),
       transform: props =>
         `translate(${props.translateX}px, ${props.translateY}px)`
     }

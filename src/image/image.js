@@ -47,7 +47,11 @@ const Image = React.forwardRef((props, ref) => {
         theTargetType = "translator";
         theTargetId = e.target.id;
       }
-      if (e.target.classList.contains(state.imageId) && e.which === 1) {
+      if (
+        e.target.classList.contains(state.imageId) &&
+        e.which === 1 &&
+        selected
+      ) {
         onStartUpdate(e);
         setState(s => ({
           ...s,
@@ -112,7 +116,8 @@ const Image = React.forwardRef((props, ref) => {
     state.status,
     containerRef,
     onStartUpdate,
-    onEndUpdate
+    onEndUpdate,
+    selected
   ]);
 
   React.useEffect(() => {
@@ -129,8 +134,8 @@ const Image = React.forwardRef((props, ref) => {
   }, [data]);
 
   return (
-    <Translator data={state} onContextMenu={onContextMenu}>
-      <Transformer data={state} hidden={selected}>
+    <Translator data={state} onContextMenu={onContextMenu} hidden={!selected}>
+      <Transformer data={state} hidden={!selected}>
         <img
           className={classes.img}
           src={state.data.src}
