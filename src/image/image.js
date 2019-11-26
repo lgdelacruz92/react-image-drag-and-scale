@@ -24,7 +24,8 @@ const Image = React.forwardRef((props, ref) => {
     selected,
     onStartUpdate,
     onEndUpdate,
-    onContextMenu
+    onContextMenu,
+    onClick
   } = props;
   const [state, setState] = React.useState({
     data: data,
@@ -134,7 +135,12 @@ const Image = React.forwardRef((props, ref) => {
   }, [data]);
 
   return (
-    <Translator data={state} onContextMenu={onContextMenu} hidden={!selected}>
+    <Translator
+      data={state}
+      onClick={onClick}
+      onContextMenu={onContextMenu}
+      hidden={!selected}
+    >
       <Transformer data={state} hidden={!selected}>
         <img
           className={classes.img}
