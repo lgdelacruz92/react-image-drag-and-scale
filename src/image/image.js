@@ -1,6 +1,6 @@
 import React from "react";
 import Transformer from "./transformer/transformer";
-import { handleTransform } from "./transformer/eventhandler";
+import { handleTransform } from "./transformer/helpers/eventhandler";
 import * as MaterialUI from "@material-ui/core";
 import Translator from "./translator/translator";
 import { handleTranslate } from "./translator/eventhandler";

@@ -1,4 +1,4 @@
-import { handleTranslate } from "../../image/translator";
+import { handleTranslate } from "../../image/translator/eventhandler";
 describe("Event Handler Test", () => {
   test("translator should move", () => {
     let dummyState = {
@@ -21,11 +21,11 @@ describe("Event Handler Test", () => {
       clientY: 100
     };
 
-    const newState = handleTranslate(mouseEvent, dummyState);
-    expect(newState.data.x).toBe(50);
-    expect(newState.data.y).toBe(50);
-    expect(newState.imageId).toBe("uniqueId");
-    expect(newState.targetType).toBe("translator");
+    handleTranslate(mouseEvent, dummyState);
+    expect(dummyState.data.x).toBe(50);
+    expect(dummyState.data.y).toBe(50);
+    expect(dummyState.imageId).toBe("uniqueId");
+    expect(dummyState.targetType).toBe("translator");
   });
 
   test("translator should move 2", () => {
@@ -49,11 +49,11 @@ describe("Event Handler Test", () => {
       clientY: 100
     };
 
-    const newState = handleTranslate(mouseEvent, dummyState);
-    expect(newState.data.x).toBe(100);
-    expect(newState.data.y).toBe(100);
-    expect(newState.imageId).toBe("uniqueId");
-    expect(newState.targetType).toBe("translator");
+    handleTranslate(mouseEvent, dummyState);
+    expect(dummyState.data.x).toBe(100);
+    expect(dummyState.data.y).toBe(100);
+    expect(dummyState.imageId).toBe("uniqueId");
+    expect(dummyState.targetType).toBe("translator");
   });
 
   test("translator should move 3", () => {
@@ -77,21 +77,21 @@ describe("Event Handler Test", () => {
       clientY: 60
     };
 
-    let newState = handleTranslate(mouseEvent, dummyState);
-    expect(newState.data.x).toBe(60);
-    expect(newState.data.y).toBe(60);
-    expect(newState.imageId).toBe("uniqueId");
-    expect(newState.targetType).toBe("translator");
+    handleTranslate(mouseEvent, dummyState);
+    expect(dummyState.data.x).toBe(60);
+    expect(dummyState.data.y).toBe(60);
+    expect(dummyState.imageId).toBe("uniqueId");
+    expect(dummyState.targetType).toBe("translator");
 
     mouseEvent = {
       clientX: 70,
       clientY: 70
     };
 
-    newState = handleTranslate(mouseEvent, dummyState);
-    expect(newState.data.x).toBe(70);
-    expect(newState.data.y).toBe(70);
-    expect(newState.imageId).toBe("uniqueId");
-    expect(newState.targetType).toBe("translator");
+    handleTranslate(mouseEvent, dummyState);
+    expect(dummyState.data.x).toBe(70);
+    expect(dummyState.data.y).toBe(70);
+    expect(dummyState.imageId).toBe("uniqueId");
+    expect(dummyState.targetType).toBe("translator");
   });
 });

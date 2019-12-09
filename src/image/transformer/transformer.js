@@ -1,6 +1,6 @@
 import React from "react";
-import { useStyles } from "./styles";
-import { createControl, useControls } from "./trdivprops";
+import { useStyles } from "./styles/styles";
+import { createControl, useControls } from "./helpers/trdivprops";
 
 const Transformer = props => {
   const { children, data, hidden } = props;

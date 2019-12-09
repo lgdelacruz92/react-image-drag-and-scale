@@ -1,4 +1,4 @@
-import { TrUtils } from "../../image/transformer/TrUtils";
+import { TrUtils } from "../../image/transformer/helpers/trutils";
 
 describe("Top and Bottom Combine Transform", () => {
   test("Test", () => {
