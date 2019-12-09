@@ -6,7 +6,7 @@ export default [
     output: {
       name: "react-image-drag-and-scale",
       file: "dist/index.js",
-      format: "es"
+      format: "cjs"
     },
     external: ["react", "@material-ui/core", "clsx"],
     plugins: [
